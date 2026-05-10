@@ -1026,6 +1026,78 @@ p {
   min-width: 88px;
 }
 
+@media (max-width: 960px) {
+  .auth-page {
+    grid-template-columns: 1fr;
+  }
+
+  .auth-hero,
+  .auth-form-card {
+    min-height: auto;
+  }
+
+  .top-nav {
+    width: calc(100vw - 24px);
+    top: 12px;
+    padding: 12px 14px;
+    border-radius: 24px;
+  }
+
+  .top-nav-overlay {
+    padding: 18px 20px;
+  }
+
+  .top-nav-inner {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: 12px;
+    align-items: center;
+  }
+
+  .nav-links {
+    justify-content: center;
+    gap: 12px;
+  }
+
+  .nav-actions {
+    min-width: 0;
+  }
+
+  .nav-link {
+    padding: 9px 14px;
+    font-size: 0.95rem;
+  }
+
+  .home-display {
+    font-size: clamp(2.6rem, 7vw, 4.6rem);
+  }
+
+  .home-hero,
+  .checkin-hero {
+    padding-left: 28px;
+    padding-right: 28px;
+  }
+
+  .home-floating-panel {
+    width: min(calc(100vw - 48px), 1080px);
+  }
+
+  .explore-overlay {
+    width: min(360px, calc(100% - 40px));
+    top: 20px;
+    right: 20px;
+  }
+
+  .social-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .social-composer-card,
+  .social-feed-card {
+    grid-column: auto;
+  }
+}
+
 @media (max-width: 720px) {
   .login-page,
   .app-shell,
@@ -1038,34 +1110,57 @@ p {
   }
 
   .top-nav {
-    width: calc(100vw - 20px);
+    width: calc(100vw - 16px);
     top: 10px;
-    padding: 14px 16px;
+    padding: 10px 12px;
   }
 
   .top-nav-overlay {
     width: 100%;
     top: 0;
-    padding: 18px 16px;
+    padding: 14px 12px;
   }
 
-  .top-nav-inner,
-  .nav-links,
-  .nav-actions,
-  .hero-stats {
-    flex-direction: column;
-    align-items: stretch;
+  .top-nav-inner {
+    grid-template-columns: 1fr;
+    justify-items: stretch;
   }
 
   .nav-links,
   .nav-actions {
     width: 100%;
+    min-width: 0;
+  }
+
+  .nav-links {
+    justify-content: flex-start;
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    padding-bottom: 4px;
+    scrollbar-width: none;
+  }
+
+  .nav-links::-webkit-scrollbar {
+    display: none;
+  }
+
+  .nav-actions {
+    justify-content: stretch;
   }
 
   .nav-link,
   .nav-login,
   .ghost-button {
     width: 100%;
+  }
+
+  .nav-link {
+    width: auto;
+    flex: 0 0 auto;
+  }
+
+  .brand-mark {
+    font-size: 1.05rem;
   }
 
   .page-hero {
@@ -1077,19 +1172,30 @@ p {
   }
 
   .home-hero {
-    min-height: 100vh;
-    padding: 188px 24px 32px;
-    background-position: 68% center;
+    min-height: 100svh;
+    padding: 150px 20px 24px;
+    background-position: 64% center;
   }
 
   .checkin-hero {
-    min-height: 76vh;
-    padding: 188px 24px 88px;
-    background-position: 64% center;
+    min-height: 72svh;
+    padding: 150px 20px 70px;
+    background-position: 62% center;
   }
 
   .checkin-hero-copy {
     margin-left: 0;
+  }
+
+  .home-display {
+    font-size: clamp(2.15rem, 10vw, 3.5rem);
+    line-height: 1.08;
+    margin-bottom: 18px;
+  }
+
+  .home-support {
+    font-size: 0.98rem;
+    line-height: 1.6;
   }
 
   .checkin-content {
@@ -1109,7 +1215,7 @@ p {
   }
 
   .live-map {
-    min-height: 460px;
+    min-height: 360px;
   }
 
   .checkin-layout {
@@ -1136,6 +1242,7 @@ p {
   .home-hero-actions {
     flex-direction: column;
     align-items: stretch;
+    margin-bottom: 24px;
   }
 
   .home-cta,
@@ -1148,16 +1255,103 @@ p {
     position: static;
     transform: none;
     grid-template-columns: 1fr;
-    margin-top: 44px;
+    margin-top: 28px;
     border-radius: 28px;
   }
 
   .home-panel-block {
+    padding: 18px 20px;
     border-right: 0;
     border-bottom: 1px solid rgba(19, 32, 51, 0.08);
   }
 
   .home-panel-block:last-child {
     border-bottom: 0;
+  }
+
+  .button-row,
+  .section-heading,
+  .social-post-actions,
+  .social-reply-box,
+  .checkin-stats-corner {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .task-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .planner-row input,
+  .planner-row textarea,
+  .auth-field input,
+  .auth-field select,
+  .social-composer-input,
+  .social-reply-box input {
+    font-size: 16px;
+  }
+
+  .social-action-chip,
+  .primary-button,
+  .ghost-button {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .login-page,
+  .app-shell,
+  .auth-page {
+    padding: 14px 12px 24px;
+  }
+
+  .top-nav {
+    width: calc(100vw - 12px);
+    top: 6px;
+    padding: 8px 10px;
+  }
+
+  .top-nav-overlay {
+    padding: 10px;
+  }
+
+  .nav-link {
+    padding: 8px 12px;
+    font-size: 0.9rem;
+  }
+
+  .home-hero,
+  .checkin-hero {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .home-display {
+    font-size: clamp(1.9rem, 11vw, 3rem);
+  }
+
+  .hero-card,
+  .card,
+  .state-card {
+    border-radius: 22px;
+  }
+
+  .hero-card,
+  .card {
+    padding: 18px;
+  }
+
+  .explore-content,
+  .checkin-content {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+
+  .explore-overlay {
+    margin-top: 12px;
+  }
+
+  .live-map {
+    min-height: 320px;
   }
 }
