@@ -1,6 +1,6 @@
 import { authState, clearSession } from "./auth";
 
-const API_BASE = "http://localhost:3001/api";
+const API_BASE = import.meta.env.VITE_API_BASE || "/api";
 
 async function fetchJson(path) {
   const response = await fetch(`${API_BASE}${path}`, {
