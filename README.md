@@ -24,8 +24,8 @@ Vue + Express product prototype for the 动次 concept.
 ## Auth and database
 
 - Login and register are available at `/auth`
-- Protected pages require a valid session token
-- SQLite database file is created automatically at `server/data/dongci.sqlite`
+- Home is public, and feature pages redirect to login first
+- SQLite database file is created automatically at `data/dongci.sqlite`
 - DeepSeek key should be stored server-side in `server/.env` using `DEEPSEEK_API_KEY`
 - Backend supports:
   - `POST /api/auth/register`
@@ -40,9 +40,27 @@ Vue + Express product prototype for the 动次 concept.
 ## Core pages included
 
 - Home
+- Checkin
 - Explore
 - Social
-- Profile
+
+## Fastest deploy
+
+The easiest way to get this online is a single Node service on Render:
+
+1. Create a new `Web Service` from this GitHub repo.
+2. Set:
+   - Build Command: `npm run install:all && npm run build`
+   - Start Command: `npm run start`
+3. Add a persistent disk and mount it to `/opt/render/project/src/data`
+   - this keeps the SQLite file after redeploys
+4. Add environment variables if needed:
+   - `NODE_ENV=production`
+   - `CLIENT_ORIGIN=https://your-domain.onrender.com`
+   - `DEEPSEEK_API_KEY=...`
+5. Deploy once, then open the Render URL.
+
+Because the Express server now serves `client/dist` in production, you only need one service instead of splitting frontend and backend.
 
 ## Notes
 

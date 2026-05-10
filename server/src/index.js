@@ -1,5 +1,7 @@
 import express from "express";
 import cors from "cors";
+import path from "node:path";
+import { fileURLToPath } from "node:url";
 import {
   buildCheckin,
   buildExplore,
@@ -39,8 +41,11 @@ import { generatePlanRecommendation } from "./ai.js";
 
 const app = express();
 const port = Number(process.env.PORT || 3001);
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+const clientDistPath = path.resolve(__dirname, "../../client/dist");
 
-app.use(cors({ origin: "http://localhost:5173" }));
+app.use(cors({ origin: process.env.CLIENT_ORIGIN || "http://localhost:5173" }));
 app.use(express.json());
 
 function getBearerToken(req) {
@@ -491,6 +496,19 @@ app.post("/api/social/posts/:postId/replies", requireAuth, (req, res) => {
 app.get("/api/profile", (req, res) => {
   res.json(buildProfile(getOptionalUser(req)));
 });
+
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static(clientDistPath));
+
+  app.get("*", (req, res, next) => {
+    if (req.path.startsWith("/api/")) {
+      next();
+      return;
+    }
+
+    res.sendFile(path.join(clientDistPath, "index.html"));
+  });
+}
 
 app.listen(port, () => {
   console.log(`动次 API running on http://localhost:${port}`);
